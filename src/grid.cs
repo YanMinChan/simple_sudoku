@@ -22,7 +22,7 @@ namespace Sudoku
         // Print the grid
         public string printGrid()
         {
-
+            return "";
         }
     }
 }
