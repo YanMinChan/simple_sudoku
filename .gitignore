@@ -2,3 +2,4 @@ src/refresher.cs
 bin/
 obj/
 simple_sudoku.csproj
+dataset/
