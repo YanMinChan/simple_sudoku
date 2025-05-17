@@ -9,8 +9,7 @@ namespace Sudoku
     public class Grid
     {
         // Instance variables
-        Cell[,] cells = new Cell[9, 9]; // cells in the grid (idk if I can declare like this)
-        // List<int, string> numbers; // numbers in the grid that includes if it's system generated/written by user
+        Cell[,] cells = new Cell[9, 9]; // 81 cells in the grid
 
         // The constructor
         public Grid(int[] puzzle, int[] solution)
@@ -19,12 +18,15 @@ namespace Sudoku
             {
                 for (int j=0; j<9; j++){
                     //Console.WriteLine(i*9 + j);
-                    cells[i,j] = new Cell(puzzle[i*9 + j], solution[i*9 + j]);
+                    this.cells[i,j] = new Cell(puzzle[i*9 + j], solution[i*9 + j]);
                 }
             }
         }
 
-        public Cell[,] Cells {get; set;} // get and set numbers in the grid
+        public Cell[,] Cells {
+            get {return cells;}
+            set {cells = value;}
+        } // get and set numbers in the grid
 
         // Print the grid
         public string printGrid()
@@ -36,7 +38,7 @@ namespace Sudoku
            for (int i=0; i<9; i++){
                gridStr += "|";
                for (int j=0; j<9; j++){
-                   gridStr = gridStr + cells[i, j].Number + "|";
+                   gridStr = gridStr + this.cells[i, j].Number + "|";
                }
                gridStr += "\n";
                // add return new line
