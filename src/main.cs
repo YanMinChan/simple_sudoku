@@ -25,17 +25,19 @@ public class main{
         Console.WriteLine("Enter position: xpos, ypos");
         string usrPos = Console.ReadLine();
         int[] pos = Array.ConvertAll(usrPos.Split(','), int.Parse);
-        //Console.WriteLine("" + pos[0] + pos[1]);
 
         Console.WriteLine("Enter value:");
         string usrVal = Console.ReadLine();
         int val = int.Parse(usrVal);
-        //Console.WriteLine(val);
 
         // Set the new usr input value
-        Cell[,] cells = grid.Cells;
-        grid.Cells[pos[0], pos[1]].Number = val;
-
+        if (grid.numValid(val, pos)){
+            grid.Cells[pos[0], pos[1]].Number = val;
+        } else {
+            Console.WriteLine("The value is not valid!");
+            //string usrVal = Console.ReadLine();
+            //int val = int.Parse(usrVal);
+        }
         // Print new grid
         Console.WriteLine(grid.printGrid());
     }

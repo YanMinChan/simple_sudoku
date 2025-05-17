@@ -5,29 +5,46 @@ namespace Sudoku
     {
         // Instance variable
         int number;
-        bool machine = false; // The number is machine entered
+        int subgrid;
+        bool def = false; // The number is machine entered
         int solution;
-        int[] possibleSolution = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        List<int> possibleSolution = new List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9};
 
         // The constructor
-        public Cell(int num, int sol)
+        public Cell(int num, int sol, int sgrid)
         {
             this.number = num;
             this.solution = sol;
+            this.subgrid = sgrid;
             if (num != 0){
-                this.machine = true; 
+                this.def = true;
+                this.possibleSolution.Remove(num);
             }
         }
 
         // The getter and setter
         public int Number {
             get { return number; } 
-            set { number = value; }
+            set { this.number = value; }
         }
 
         public int Solution {
             get { return solution; }
-            set { solution = value; }
+            set { this.solution = value; }
+        }
+
+        public List<int> PosSolution {
+            get { return possibleSolution; }
+            set { this.possibleSolution = value; }
+        }
+
+        public bool Default {
+            get { return def; }
+            set { this.def = value; }
+        }
+
+        public int Subgrid {
+            get { return subgrid; }
         }
     }
 }

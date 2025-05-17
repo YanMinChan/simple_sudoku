@@ -13,6 +13,7 @@ namespace Sudoku
             this.solution = new List<int[]>();
         }
 
+        // Public methods
         public void ReadCSV(string filePath){
             // Read from csv
             using (StreamReader sr = new StreamReader(filePath))
