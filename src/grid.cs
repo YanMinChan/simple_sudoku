@@ -87,5 +87,17 @@ namespace Sudoku
             }
             return true;
         }
+
+        // Check if the puzzle is complete
+        public bool puzComplete(){
+            for (int i=0;i<9;i++){
+                for (int j=0;j<9;j++){
+                    if (this.cells[i,j].Number != this.cells[i,j].Solution){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
