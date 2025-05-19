@@ -34,8 +34,6 @@ namespace Sudoku
                         // convert char to int by ascii
                         puzSet[j] = gameSet[0][j] - '0';
                         solSet[j] = gameSet[1][j] - '0';
-                    //Console.WriteLine("This is gameset " + gameSet[0][j]); // test
-                    //Console.WriteLine("This is puzSet " + puzSet[j]);
                     }
                     this.puzzle.Add(puzSet);
                     this.solution.Add(solSet);
