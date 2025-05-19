@@ -1,5 +1,5 @@
 # simple_sudoku
-A simple sudoku playable in the terminal
+A simple sudoku playable in the terminal. Also a small warm up for my dissertation project :D
 
 ## Dummy guide to run it on linux shell
 1. install `dotnet-runtime` and `dotnet-sdk`.
