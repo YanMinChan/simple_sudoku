@@ -42,9 +42,8 @@ namespace Sudoku
         }
 
         // Public methods
-        // Print the grid
-        public string printGrid()
-        {
+        // Put the grid into string
+        public string strGrid(){
             string gridStr = "";
             // loop through each row
             // pattern:
@@ -58,6 +57,25 @@ namespace Sudoku
                // add return new line
             }
             return gridStr;
+        }
+
+        // Print certain subgrids with color
+        public void printGridWithColor(int[] subgrids){
+            for (int i=0; i<9; i++){
+                Console.Write("|");
+                for (int j=0; j<9; j++){
+                    Cell c = this.cells[i, j];
+                    if (subgrids.Contains(c.Subgrid)){
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(c.Number);
+                        Console.ResetColor();
+                    } else {
+                        Console.Write(c.Number);
+                    }
+                    Console.Write("|");
+                }
+                Console.WriteLine();
+            }
         }
 
         // Check if number is valid to place in the cell
