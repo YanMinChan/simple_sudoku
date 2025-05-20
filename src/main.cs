@@ -16,7 +16,9 @@ public class main{
         Grid grid = new Grid(puz[0],sol[0]);
 
         // Print grid
-        Console.WriteLine(grid.printGrid());
+        // Console.WriteLine(grid.strGrid());
+        int[] sgridcol = [1, 3, 5, 7, 9];
+        grid.printGridWithColor(sgridcol);
 
         // Prompt user to enter value and position
         // TODO: Limit input to only int from 1 to 9
@@ -43,7 +45,8 @@ public class main{
                     // Set new value
                     grid.Cells[pos[0], pos[1]].Number = val;
                     // Print new grid
-                    Console.WriteLine(grid.printGrid());
+                    //Console.WriteLine(grid.strGrid());
+                    grid.printGridWithColor(sgridcol);
                 } else {
                     Console.WriteLine("The number is not valid, there are duplicates!");
                     //string usrVal = Console.ReadLine();
