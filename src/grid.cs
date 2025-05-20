@@ -117,5 +117,11 @@ namespace Sudoku
             }
             return true;
         }
+
+        // TODO: Check if a specific number is all filled in
+        // (i.e. all 5s are filled in)
+        public bool numFilled(int num){
+            return false;
+        }
     }
 }
