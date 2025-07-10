@@ -4,47 +4,48 @@ namespace Sudoku
     public class Cell
     {
         // Instance variable
-        int number;
-        int subgrid;
-        bool def = false; // The number is machine entered
-        int solution;
-        List<int> possibleSolution = new List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        private int _number;
+        private int _solution;
+        private int _subgrid;
+        private bool _isUnchangeable = false; // The number is machine entered
+
+        List<int> _possibleSolution = new List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9};
 
         // The constructor
         public Cell(int num, int sol, int sgrid)
         {
-            this.number = num;
-            this.solution = sol;
-            this.subgrid = sgrid;
+            _number = num;
+            _solution = sol;
+            _subgrid = sgrid;
             if (num != 0){
-                this.def = true;
-                this.possibleSolution.Remove(num);
+                _isUnchangeable = true;
+                _possibleSolution.Remove(num);
             }
         }
 
         // The getter and setter
         public int Number {
-            get { return number; } 
-            set { this.number = value; }
+            get { return _number; } 
+            set { _number = value; }
         }
 
         public int Solution {
-            get { return solution; }
-            set { this.solution = value; }
+            get { return _solution; }
+            set { _solution = value; }
         }
 
         public List<int> PosSolution {
-            get { return possibleSolution; }
-            set { this.possibleSolution = value; }
+            get { return _possibleSolution; }
+            set { _possibleSolution = value; }
         }
 
-        public bool Default {
-            get { return def; }
-            set { this.def = value; }
+        public bool IsUnchangeable {
+            get { return _isUnchangeable; }
+            set { _isUnchangeable = value; }
         }
 
         public int Subgrid {
-            get { return subgrid; }
+            get { return _subgrid; }
         }
     }
 }

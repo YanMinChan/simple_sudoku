@@ -9,7 +9,7 @@ namespace Sudoku
     public class Grid
     {
         // Instance variables
-        Cell[,] cells = new Cell[9, 9]; // 81 cells in the grid
+        private Cell[,] _cells = new Cell[9, 9]; // 81 cells in the grid
 
         // The constructor
         public Grid(int[] puzzle, int[] solution)
@@ -30,15 +30,15 @@ namespace Sudoku
             {
                 for (int j=0; j<9; j++){
                     //Console.WriteLine(i*9 + j);
-                    this.cells[i,j] = new Cell(puzzle[i*9 + j], solution[i*9 + j], subgrid[i*9 + j]);
+                    _cells[i,j] = new Cell(puzzle[i*9 + j], solution[i*9 + j], subgrid[i*9 + j]);
                 }
             }
         }
 
         // Getter and setters
         public Cell[,] Cells {
-            get {return cells;}
-            set {cells = value;}
+            get {return _cells;}
+            set {_cells = value;}
         }
 
         // Public methods
@@ -51,7 +51,7 @@ namespace Sudoku
            for (int i=0; i<9; i++){
                gridStr += "|";
                for (int j=0; j<9; j++){
-                   gridStr = gridStr + this.cells[i, j].Number + "|";
+                   gridStr = gridStr + _cells[i, j].Number + "|";
                }
                gridStr += "\n";
                // add return new line
@@ -64,7 +64,7 @@ namespace Sudoku
             for (int i=0; i<9; i++){
                 Console.Write("|");
                 for (int j=0; j<9; j++){
-                    Cell c = this.cells[i, j];
+                    Cell c = _cells[i, j];
                     if (subgrids.Contains(c.Subgrid)){
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write(c.Number);
@@ -82,22 +82,22 @@ namespace Sudoku
         public bool numValid(int num, int[] pos){
             // Check for dup in col
             for (int i=0; i<9; i++){
-                if (this.cells[pos[0], i].Number == num){
+                if (_cells[pos[0], i].Number == num){
                     return false;
                 }
             }
             // Check for dup in row
             for (int i=0; i<9; i++){
-                if (this.cells[i, pos[1]].Number == num){
+                if (_cells[i, pos[1]].Number == num){
                     return false;
                 }
             }
             // Check for dup in subgrid
-            int subgrid = this.cells[pos[0], pos[1]].Subgrid; // extract the subgrid of user chosen cell
+            int subgrid = _cells[pos[0], pos[1]].Subgrid; // extract the subgrid of user chosen cell
             for (int i=0; i<9; i++){
                 for (int j=0; j<9; j++){
-                    if (this.cells[i, j].Subgrid == subgrid){
-                        if (this.cells[i, j].Number == num){
+                    if (_cells[i, j].Subgrid == subgrid){
+                        if (_cells[i, j].Number == num){
                             return false;
                         }
                     }
@@ -110,7 +110,7 @@ namespace Sudoku
         public bool puzComplete(){
             for (int i=0;i<9;i++){
                 for (int j=0;j<9;j++){
-                    if (this.cells[i,j].Number != this.cells[i,j].Solution){
+                    if (_cells[i,j].Number != _cells[i,j].Solution){
                         return false;
                     }
                 }

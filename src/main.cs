@@ -6,7 +6,7 @@ public class main{
     public static void Main(){
         // Testing sr
         Reader r = new Reader();
-        r.ReadCSV("./dataset/sudoku.csv");
+        r.Load("./dataset/sudoku.csv");
 
         // Saving puzzle to List
         List<int[]> puz = r.Puzzle;
@@ -37,7 +37,7 @@ public class main{
                 // Check if it's changing default cell
                 // Check if the number is integer 1 to 9
                 // Check if there is duplicate in row column sgrid
-                if(grid.Cells[pos[0], pos[1]].Default){
+                if(grid.Cells[pos[0], pos[1]].IsUnchangeable){
                     Console.WriteLine("You cannot change default cell.");
                 } else if(val < 0 || val > 9){
                     Console.WriteLine("The number is not valid (0 to 9 integer only).");
