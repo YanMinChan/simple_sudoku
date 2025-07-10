@@ -1,4 +1,5 @@
 using System.IO;
+using System;
 using Sudoku;
 
 namespace Sudoku
@@ -10,12 +11,41 @@ namespace Sudoku
     {
         // Instance variables
         private Cell[,] _cells = new Cell[9, 9]; // 81 cells in the grid
+        private int[] _puz, _sol;
 
         // The constructor
-        public Grid(int[] puzzle, int[] solution)
-        {
-            // Initialising the subgrid
-            int[] subgrid = [1, 1, 1, 2, 2, 2, 3, 3, 3
+        public Grid(){}
+
+        // Getter and setters
+        public Cell[,] Cells {
+            get {return _cells;}
+            set {_cells = value;}
+        }
+
+        // Public methods
+        // Select a random puzzle
+        public Grid SelectPuzzle(string filePath, int puzId = -1){
+          Reader reader = new Reader();
+          reader.Load(filePath);
+
+          List<int[]> puzList = reader.Puzzle;
+          List<int[]> solList = reader.Solution;
+
+          if (puzId != -1){
+            _puz = puzList[puzId];
+            _sol = solList[puzId];
+          } else {
+            Random rand = new Random();
+            puzId = rand.Next(puzList.Count);
+            _puz = puzList[puzId];
+            _sol = solList[puzId];
+          }
+          return this;
+        }
+
+        // Build the puzzle into cell class
+        public Grid BuildPuzzle(){
+           int[] subgrid = [1, 1, 1, 2, 2, 2, 3, 3, 3
             , 1, 1, 1, 2, 2, 2, 3, 3, 3
             , 1, 1, 1, 2, 2, 2, 3, 3, 3
             , 4, 4, 4, 5, 5, 5, 6, 6, 6
@@ -25,23 +55,16 @@ namespace Sudoku
             , 7, 7, 7, 8, 8, 8, 9, 9, 9
             , 7, 7, 7, 8, 8, 8, 9, 9, 9];
 
-            // Fill the cells with given puzzle and solution
-            for (int i=0; i<9; i++)
-            {
-                for (int j=0; j<9; j++){
-                    //Console.WriteLine(i*9 + j);
-                    _cells[i,j] = new Cell(puzzle[i*9 + j], solution[i*9 + j], subgrid[i*9 + j]);
-                }
+
+          int size = _cells.GetLength(0);
+          for (int r=0; r<size; r++){
+            for (int c=0; c<size; c++){
+                _cells[r, c] = new Cell(_puz[r*9+c], _sol[r*9+c], subgrid[r*9+c]);
             }
+          }
+          return this;
         }
 
-        // Getter and setters
-        public Cell[,] Cells {
-            get {return _cells;}
-            set {_cells = value;}
-        }
-
-        // Public methods
         // Put the grid into string
         public string strGrid(){
             string gridStr = "";

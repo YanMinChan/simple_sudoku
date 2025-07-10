@@ -4,16 +4,11 @@ namespace Sudoku
 {
 public class main{
     public static void Main(){
-        // Testing sr
-        Reader r = new Reader();
-        r.Load("./dataset/sudoku.csv");
-
-        // Saving puzzle to List
-        List<int[]> puz = r.Puzzle;
-        List<int[]> sol = r.Solution;
+        string filePath = "./dataset/sudoku.csv";
 
         // Create the grid
-        Grid grid = new Grid(puz[0],sol[0]);
+        Grid grid = new Grid();
+        grid.SelectPuzzle(filePath).BuildPuzzle();
 
         // Print grid
         // Console.WriteLine(grid.strGrid());
