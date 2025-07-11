@@ -45,21 +45,11 @@ namespace Sudoku
 
         // Build the puzzle into cell class
         public Grid BuildPuzzle(){
-           int[] subgrid = [1, 1, 1, 2, 2, 2, 3, 3, 3
-            , 1, 1, 1, 2, 2, 2, 3, 3, 3
-            , 1, 1, 1, 2, 2, 2, 3, 3, 3
-            , 4, 4, 4, 5, 5, 5, 6, 6, 6
-            , 4, 4, 4, 5, 5, 5, 6, 6, 6
-            , 4, 4, 4, 5, 5, 5, 6, 6, 6
-            , 7, 7, 7, 8, 8, 8, 9, 9, 9
-            , 7, 7, 7, 8, 8, 8, 9, 9, 9
-            , 7, 7, 7, 8, 8, 8, 9, 9, 9];
-
-
           int size = _cells.GetLength(0);
           for (int r=0; r<size; r++){
             for (int c=0; c<size; c++){
-                _cells[r, c] = new Cell(_puz[r*9+c], _sol[r*9+c], subgrid[r*9+c]);
+              int sgrid = (r/3) * 3 + (c/3);
+                _cells[r, c] = new Cell(_puz[r*9+c], _sol[r*9+c], sgrid);
             }
           }
           return this;
