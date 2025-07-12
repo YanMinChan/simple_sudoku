@@ -1,5 +1,9 @@
-src/refresher.cs
 bin/
 obj/
 simple_sudoku.csproj
+
+# Ignore large files
 dataset/
+
+# Ignore editor config
+.editorconfig

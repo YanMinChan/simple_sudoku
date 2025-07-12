@@ -9,7 +9,7 @@ namespace Sudoku
         private int _subgrid;
         private bool _isUnchangeable = false; // The number is machine entered
 
-        List<int> _possibleSolution = new List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        List<int> _possibleSolution = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         // The constructor
         public Cell(int num, int sol, int sgrid)
@@ -17,34 +17,40 @@ namespace Sudoku
             _number = num;
             _solution = sol;
             _subgrid = sgrid;
-            if (num != 0){
+            if (num != 0)
+            {
                 _isUnchangeable = true;
                 _possibleSolution.Remove(num);
             }
         }
 
         // The getter and setter
-        public int Number {
-            get { return _number; } 
+        public int Number
+        {
+            get { return _number; }
             set { _number = value; }
         }
 
-        public int Solution {
+        public int Solution
+        {
             get { return _solution; }
             set { _solution = value; }
         }
 
-        public List<int> PosSolution {
+        public List<int> PosSolution
+        {
             get { return _possibleSolution; }
             set { _possibleSolution = value; }
         }
 
-        public bool IsUnchangeable {
+        public bool IsUnchangeable
+        {
             get { return _isUnchangeable; }
             set { _isUnchangeable = value; }
         }
 
-        public int Subgrid {
+        public int Subgrid
+        {
             get { return _subgrid; }
         }
     }
